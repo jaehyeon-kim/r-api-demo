@@ -1,9 +1,0 @@
-docker build -t=api ./api/.
-docker run -d -p 7000:80 -p 8000:8000 -p 9000:9000 --name api api:latest
-
-docker build -t=locust ./locust/.
-docker run --rm -it --name locust locust "locust -f /root/locustfile.py --host http://localhost --no-web -c 1 -r 1"
-
-curl -H "Content-Type: application/json" -X POST -d '{"n": 10, "wait": 0.5}' http://localhost:7000/test
-curl -H "Content-Type: application/json" -X POST -d '{"n": 10, "wait": 0.5}' http://localhost:8000/test
-curl -H "Content-Type: application/json" -X POST -d '{"n": 10, "wait": 0.5}' http://localhost:9000/test
